@@ -23,7 +23,7 @@
 			2) Open the JavaScript Console
 			3) Paste the following to execute this script:
 			
-			var script= document.createElement('script');script.type='text/javascript';script.src='<url_for_this_script>'; document.head.appendChild(script);
+			var script= document.createElement('script');script.type='text/javascript';script.src='https://cdn.rawgit.com/pcal79/ResourceInfo/master/resourceInfo.js'; document.head.appendChild(script);
 			
 			You can also copy and paste the entire script to the JavaScript console to execute it.
 
