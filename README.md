@@ -1,17 +1,17 @@
 This javaScript will retrieve resource timings from the ResourceTiming API as well as additional information from the DOM and output it to a table in the Chrome browser's JavaScript console.
   	
 The set of metrics provided are:
-	- (index)	: The URL for the Resource
-	- num		: A numerical index
-  	- cached	:	A YES/NO indicator of whether the resource was served from the browser cache.   
-  	- dns		:	DNS Lookup Time
-  	- tcp_connect	:	Time it took to establish a TCP Connection
-  	- redirect	: Redirect time
-  	- firstByte	: First Byte Time
-  	- duration	: Response Time for resource
-  	- tagName	: The type of HTML tag that loaded the resource
-  	- outerHTML	: The HTML that loaded the resource
-  	- v		: If the element is an image, is it visible?
+ - (index)	: The URL for the Resource
+ - num		: A numerical index
+ - cached	:	A YES/NO indicator of whether the resource was served from the browser cache.   
+ - dns		:	DNS Lookup Time
+ - tcp_connect	:	Time it took to establish a TCP Connection
+ - redirect	: Redirect time
+ - firstByte	: First Byte Time
+ - duration	: Response Time for resource
+ - tagName	: The type of HTML tag that loaded the resource
+ - outerHTML	: The HTML that loaded the resource
+ - v		: If the element is an image, is it visible?
 
 Usage:
 	1) Navigate to a page in Chrome
