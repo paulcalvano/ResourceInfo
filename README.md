@@ -17,6 +17,7 @@ Usage:
 	1) Navigate to a page in Chrome
 	2) Open the JavaScript Console
 	3) Paste the following to execute this script:
+		
 			
 var script= document.createElement('script');script.type='text/javascript';script.src='https://cdn.rawgit.com/pcal79/ResourceInfo/master/resourceInfo.js'; document.head.appendChild(script);
 
