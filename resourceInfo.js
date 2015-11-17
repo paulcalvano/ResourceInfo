@@ -23,11 +23,21 @@
 			2) Open the JavaScript Console
 			3) Paste the following to execute this script:
 			
-			var script= document.createElement('script');script.type='text/javascript';script.src='https://cdn.rawgit.com/pcal79/ResourceInfo/master/resourceInfo.js'; document.head.appendChild(script);
+			var script= document.createElement('script');script.type='text/javascript';script.src='http://info.akamai.com/~pacalvan/resourceInfo.js'; document.head.appendChild(script);
 			
 			You can also copy and paste the entire script to the JavaScript console to execute it.
 
 */
+
+
+// Include JQuery
+var js = document.createElement("script");
+js.type = "text/javascript";
+js.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
+document.body.appendChild(js)
+
+
+console.log("Inserted JQuery");
 
 // Function to populate Resource Timing Statistics
 function Resource(num, cached, dns, tcp_connect, redirect, firstByte, duration) {
@@ -179,6 +189,10 @@ function AddToResourceFromDOM(attribute) {
 			}
 }
 
+function htmlEncode( html ) {
+    return document.createElement( 'a' ).appendChild( 
+        document.createTextNode( html ) ).parentNode.innerHTML;
+};
 
 // Get  Resource Timings.
 var resourceList = window.performance.getEntriesByType("resource");
@@ -197,10 +211,13 @@ for (i= 0; i < resourceList.length; i++){
 }
 
 
+
+
 // Determine base hostname with protocol, for use when DOM elements contain relative URIs
 var http = location.protocol;	  
 var slashes = http.concat("//");
 var host = slashes.concat(window.location.hostname);
+
 
 // Get a list of all the DOM elements and loop through them..
 elements = document.getElementsByTagName('*');
@@ -211,5 +228,26 @@ for( i=0; i < elements.length; i++ ){
 }
 
 // Output eveything to a table in the JavaScript console.
-console.log("Resource Overview for: " + window.location); 
-console.table(resources, ["num", "cached", "dns", "tcp_connect", "redirect", "firstByte", "duration", "tagName", "v", "outerHTML"]);
+ console.log("Resource Overview for: " + window.location); 
+ console.table(resources, ["num", "cached", "dns", "tcp_connect", "redirect", "firstByte", "duration", "tagName", "v", "outerHTML"]);
+
+var tbl = "<table><tr><th>Num</th><th>URL</th><th>cached</th><th>dns</th><th>tcp_connect</th><th>redirect</th><th>firstByte</th><th>duration</th><th>tagName</th><th>visible</th><th>outerHTML</th></tr>";
+for (var key in resources) {
+
+	tbl = tbl + "<tr>";
+	tbl = tbl + "<td>" + resources[key]['num'] + "</td>";
+	tbl = tbl + "<td>" + htmlEncode(key) + "</td>";
+	tbl = tbl + "<td>" + resources[key]['cached'] + "</td>";
+	tbl = tbl + "<td>" + resources[key]['dns'] + "</td>";
+	tbl = tbl + "<td>" + resources[key]['tcp_connect'] + "</td>";
+	tbl = tbl + "<td>" + resources[key]['redirect'] + "</td>";
+	tbl = tbl + "<td>" + resources[key]['firstByte'] + "</td>";
+	tbl = tbl + "<td>" + resources[key]['duration'] + "</td>";
+	tbl = tbl + "<td>" + htmlEncode(resources[key]['tagName']) + "</td>";
+	tbl = tbl + "<td>" + htmlEncode(resources[key]['v']) + "</td>";
+	tbl = tbl + "<td>" + htmlEncode(resources[key]['outerHTML']) + "</td>";
+	tbl = tbl + "</tr>";
+
+}
+
+window.open('data:application/vnd.ms-excel,' + escape(tbl));
