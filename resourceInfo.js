@@ -30,15 +30,6 @@
 */
 
 
-// Include JQuery
-var js = document.createElement("script");
-js.type = "text/javascript";
-js.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
-document.body.appendChild(js)
-
-
-console.log("Inserted JQuery");
-
 // Function to populate Resource Timing Statistics
 function Resource(num, cached, dns, tcp_connect, redirect, firstByte, duration) {
 	this.num = num;
